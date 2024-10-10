@@ -1,1 +1,1 @@
-Modelo de Projeto Frontend Mobile em React Native TS com EXPO
+Projeto em React Native com EXPO para controlar casa automatizada na cadeira de Laboratório de Inovação 1 do curso de Sistemas de Informação da AMF
