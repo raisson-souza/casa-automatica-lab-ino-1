@@ -1,27 +1,27 @@
 import Endpoints from "./base/Endpoints"
 
 export default abstract class ServiceExample extends Endpoints {
-    static async GetExample() {
+    static async Gate() {
         return await this.Get<any>({
             url: "/get_example"
         })
     }
 
-    static async PostExample(body: any) {
+    static async Lights(body: any) {
         return await this.Post<any>({
             url: "/post_example",
             body: body
         })
     }
 
-    static async PutExample(body: any) {
+    static async PresenceSensor(body: any) {
         return await this.Put<any>({
             url: "/put_example",
             body: body
         })
     }
 
-    static async DeleteExample() {
+    static async WaterBomb() {
         return await this.Delete<any>({
             url: "/delete_example"
         })

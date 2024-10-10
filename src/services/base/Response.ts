@@ -9,25 +9,13 @@ export default class Response<T> {
      * */
     Status: number
     /**
-     * Sucesso da requisição.
-     * Propriedade personalizada. <- remover se conveniente
-     * */
-    Success: boolean
-    /**
      * Retorno da requisição
      * Propriedade personalizada. <- remover se conveniente
      * */
     Data: T
-    /**
-     * Mensagem de erro da requisição.
-     * Caso a propriedade personalizada "Success" seja falsa, os dados de Data estarão aqui.  <- remover se conveniente
-     * */
-    ErrorMessage?: string
 
     constructor(data : any) {
         this.Status = data["status"]
-        this.Success = data["success"] ?? true
-        this.Data = this.Success ? data["data"] : null
-        this.ErrorMessage = this.Success ? null : data["data"]
+        this.Data = data["data"]
     }
 }
