@@ -1,49 +1,61 @@
-import { StyleSheet, Text, View } from "react-native"
-import Gate from "./src/components/Gate"
-import Lights from "./src/components/Lights"
-import PresenceSensor from "./src/components/PresenceSensor"
+import { Text, View } from "react-native"
 import React from "react"
-import WaterBomb from "./src/components/WaterBomb"
+import { createDrawerNavigator } from "@react-navigation/drawer"
+import { NavigationContainer } from "@react-navigation/native"
+import { Home } from "./src/screens/Home"
+import { StatusBar } from "expo-status-bar"
 
-export default function App() {
+type DrawerNavigationParams = {
+  Home: undefined
+  Gate: undefined
+  Lights: undefined
+  PresenceSensor: undefined
+  WaterBomb: undefined
+}
+
+const Drawer = createDrawerNavigator<DrawerNavigationParams>()
+
+const App = () => {
   return (
-    <View style={ styles.container }>
-      <Text
-        style={{
-          color: "white",
-          fontSize: 30,
-          fontWeight: "bold",
+    <NavigationContainer>
+      <StatusBar backgroundColor="yellow" style={"dark"} />
+      <Drawer.Navigator
+        initialRouteName="Home"
+        screenOptions={{
+          drawerStyle: {
+            backgroundColor: "#266C5C"
+          },
         }}
-      >Casa Automática</Text>
-      <Gate componentStyle={ styles.component } textStyle={ styles.componentText }/>
-      <Lights componentStyle={ styles.component } textStyle={ styles.componentText }/>
-      <PresenceSensor componentStyle={ styles.component } textStyle={ styles.componentText }/>
-      <WaterBomb componentStyle={ styles.component } textStyle={ styles.componentText }/>
-    </View>
+      >
+        <Drawer.Screen
+          options={{
+            headerTintColor: "white",
+            drawerActiveTintColor: "white",
+            drawerInactiveTintColor: "white",
+            headerStyle: { backgroundColor: "#266C5C" }
+          }}
+          name="Home"
+          component={ Home }
+        />
+        <Drawer.Screen
+          name="Gate"
+          component={ () => (<View><Text>Portão</Text></View>) }
+        />
+        <Drawer.Screen
+          name="Lights"
+          component={ () => (<View><Text>Leds</Text></View>) }
+        />
+        <Drawer.Screen
+          name="PresenceSensor"
+          component={ () => (<View><Text>Sensor de presença</Text></View>) }
+        />
+        <Drawer.Screen
+          name="WaterBomb"
+          component={ () => (<View><Text>Bomba de agua</Text></View>) }
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#0A3A40",
-    alignItems: "center",
-    justifyContent: "center",
-    gap: 30
-  },
-  component: {
-    width: 350,
-    height: 100,
-    backgroundColor: "#0F5959",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 15,
-    borderRadius: 15,
-  },
-  componentText: {
-    color: "white",
-    fontSize: 18
-  },
-})
+export default App
