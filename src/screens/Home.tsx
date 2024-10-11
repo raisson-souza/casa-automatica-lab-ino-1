@@ -3,7 +3,6 @@ import { Screen } from "../components/base/Screen"
 import { useEffect, useState } from "react"
 import { View, Button, StyleSheet, Text, Pressable } from 'react-native'
 
-
 export const Home: React.FC<{}> = () => {
     const [ sound, setSound ] = useState<Audio.Sound | null>(null)
     const [ isPlaying, setIsPlaying ] = useState(false)
@@ -22,7 +21,7 @@ export const Home: React.FC<{}> = () => {
         }
     }, [])
 
-    const playPauseMusic = async () => {
+    const playPauseSong = async () => {
         if (sound) {
             if (isPlaying)
                 await sound.pauseAsync()
@@ -32,7 +31,7 @@ export const Home: React.FC<{}> = () => {
         }
     }
 
-    const replayMusic = async () => {
+    const replaySong = async () => {
         if (sound) {
             if (isPlaying)
                 await sound.playFromPositionAsync(0)
@@ -41,6 +40,11 @@ export const Home: React.FC<{}> = () => {
                 setIsPlaying(!isPlaying)
             }
         }
+    }
+
+    const setSongRate = async (rate: number) => {
+        if (sound)
+            await sound.setRateAsync(rate, true)
     }
 
     return (
@@ -57,7 +61,7 @@ export const Home: React.FC<{}> = () => {
                                             ...styles.button,
                                             backgroundColor: isPlaying ? "yellow" : "green"
                                         }}
-                                        onPress={ playPauseMusic }
+                                        onPress={ playPauseSong }
                                     >
                                         <Text
                                             style={{
@@ -67,7 +71,62 @@ export const Home: React.FC<{}> = () => {
                                                 { isPlaying ? 'Pausar' : 'Tocar' }
                                         </Text>
                                     </Pressable>
-                                    <Button title="Resetar" onPress={ replayMusic } />
+                                    <Button title="Resetar" onPress={ replaySong } />
+                                </View>
+                                <View
+                                    style={{
+                                        ...styles.minorContainers,
+                                        flexDirection: "row",
+                                        alignSelf: "center",
+                                        gap: 10,
+                                        paddingTop: 20,
+                                    }}
+                                >
+                                    <Pressable
+                                            style={{
+                                                ...styles.button,
+                                                backgroundColor: "black"
+                                            }}
+                                            onPress={ () => setSongRate(0.8) }
+                                        >
+                                            <Text
+                                                style={{
+                                                    fontSize: 18,
+                                                    color: "white"
+                                                }}>
+                                                    Slowed Version
+                                            </Text>
+                                    </Pressable>
+                                    <Pressable
+                                            style={{
+                                                ...styles.button,
+                                                backgroundColor: "white"
+                                            }}
+                                            onPress={ () => setSongRate(1) }
+                                        >
+                                            <Text
+                                                style={{
+                                                    fontSize: 18,
+                                                    color: "black"
+                                                }}>
+                                                    Normal Version
+                                            </Text>
+                                    </Pressable>
+                                    <Pressable
+                                            style={{
+                                                ...styles.button,
+                                                backgroundColor: "purple"
+                                            }}
+                                            onPress={ () => setSongRate(2) }
+                                        >
+                                            <Text
+                                                style={{
+                                                    fontSize: 18,
+                                                    color: "white"
+                                                }}>
+                                                    Speed Version
+                                            </Text>
+                                    </Pressable>
                                 </View>
                             </View>
                         )
@@ -85,6 +144,7 @@ export const Home: React.FC<{}> = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        width: "100%",
         justifyContent: 'center',
         alignItems: 'center',
         gap: 60,
