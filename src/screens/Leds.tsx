@@ -1,4 +1,4 @@
-import { Led } from "../components/Lights"
+import { Led } from "../components/Led"
 import { Screen } from "../components/base/Screen"
 
 export const Leds: React.FC<{}> = () => {
