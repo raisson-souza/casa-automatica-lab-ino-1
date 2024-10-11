@@ -1,12 +1,14 @@
 import { Button, Text, View } from "react-native"
-import { ComponentType } from "../../types/ComponentTypes"
-import { useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import Service from "../../services/Service"
 
-type LightsProps = {
-} & ComponentType
+type LedProps = {
+    ledName: string
+}
 
-export default function Lights({ componentStyle, textStyle }: LightsProps) {
-    const [ lightsOn, setLightsOn ] = useState<boolean>()
+export const Led: React.FC<LedProps> = ({ ledName }) => {
+    const [ lightsOn, setLightsOn ] = useState<boolean>(false)
+    const [ loading, setLoading ] = useState<boolean>(false) // TODO: ajustar após rota de GET
 
     useEffect(() => {
         const fetchLights = async () => {
@@ -15,16 +17,21 @@ export default function Lights({ componentStyle, textStyle }: LightsProps) {
     }, [])
 
     const changeLights = async () => {
-
+        await Service.SetLed("", true)
     }
 
     return (
-        <View style={ componentStyle }>
-            <Text style={{ ...textStyle, fontWeight: "bold" }}>LUZES</Text>
-            <Button
-                title={ lightsOn ? "Desligar luzes" : "Ligar luzes" }
-                onPress={ () => changeLights }
-            />
+        <View>
+            {
+                loading
+                    ? <Text>Carregando informações do ESP 32</Text>
+                    : (
+                        <Button
+                            title={ lightsOn ? `Desligar led ${ ledName }` : `Ligar led ${ ledName }` }
+                            onPress={ () => changeLights() }
+                        />
+                    )
+            }
         </View>
     )
 }
