@@ -3,7 +3,10 @@ import { Home } from "./src/screens/Home"
 import { Leds } from "./src/screens/Leds"
 import { NavigationContainer } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
+import GateScreen from "./src/screens/GateScreen"
+import PresenceSensorScreen from "./src/screens/PresenceSensorScreen"
 import React from "react"
+import WaterBombScreen from "./src/screens/WaterBombScreen"
 
 type DrawerNavigationParams = {
   Home: undefined
@@ -42,7 +45,7 @@ const App = () => {
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Portão" }}
           name="Gate"
-          component={ Home }
+          component={ GateScreen }
         />
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "LEDs" }}
@@ -52,12 +55,12 @@ const App = () => {
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Sensor de Presença" }}
           name="PresenceSensor"
-          component={ Home }
+          component={ PresenceSensorScreen }
         />
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Bomba de Água" }}
           name="WaterBomb"
-          component={ Home }
+          component={ WaterBombScreen }
         />
       </Drawer.Navigator>
     </NavigationContainer>
