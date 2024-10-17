@@ -1,3 +1,4 @@
+import env from "../config/env"
 import Endpoints from "./base/Endpoints"
 
 export default abstract class Service extends Endpoints {
@@ -32,15 +33,14 @@ export default abstract class Service extends Endpoints {
     }
 
     static async GetLed(led: string) {
-        return await this.Get<string>({
-            url: "",
-        })
+        return await fetch(`${ env.BackendUrl() }/led?nome=${ led }`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+            .then(async (result) => {
+                const json = await result.json()
+                return json
+            })
     }
 
     static async SetLed(led: string, action: boolean = true) {
-        return await this.Post<string>({
-            url: "",
-            body: {}
-        })
+        return await fetch(`${ env.BackendUrl() }/led?nome=${ led }&ligar=${ action }`, { method: "POST", headers: { 'Content-Type': 'application/json' } })
     }
 }

@@ -4,22 +4,33 @@ import Service from "../../services/Service"
 
 type LedProps = {
     ledName: string
-    ledApiName: string
 }
 
-export const Led: React.FC<LedProps> = ({ ledName, ledApiName }) => {
-    const [ lightsOn, setLightsOn ] = useState<boolean>(false)
-    const [ loading, setLoading ] = useState<boolean>(false) // TODO: ajustar após rota de GET
+export const Led: React.FC<LedProps> = ({ ledName }) => {
+    const [ ledOn, setLedOn ] = useState<boolean | null>(null)
+    const [ loading, setLoading ] = useState<boolean>(true)
 
     useEffect(() => {
         const fetchLights = async () => {
-
+            await Service.GetLed(ledName)
+                .then(result => {
+                    setLoading(false)
+                    setLedOn(result)
+                })
         }
         fetchLights()
+
+        return () => {
+            console.log("saindo")
+            setLoading(true)
+        }
     }, [])
 
     const changeLights = async () => {
-        await Service.SetLed("", true) // TODO: ledApiName aqui
+        await Service.SetLed(ledName, !ledOn)
+            .then(() => {
+                setLedOn(!ledOn)
+            })
     }
 
     return (
@@ -28,9 +39,9 @@ export const Led: React.FC<LedProps> = ({ ledName, ledApiName }) => {
                 loading
                     ? <Text style={ styles.text }>Carregando informações do ESP 32</Text>
                     : <>
-                        <Text style={ styles.text }>Led { ledName }</Text>
+                        <Text style={ styles.text }>Led { ledName } ({ ledOn ? "LIGADO" : "DESLIGADO" })</Text>
                         <Button
-                            title={ lightsOn ? "Desligar" : "Ligar" }
+                            title={ ledOn ? "Desligar" : "Ligar" }
                             onPress={ () => changeLights() }
                         />
                     </>

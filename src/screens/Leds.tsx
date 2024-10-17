@@ -18,12 +18,12 @@ export const Leds: React.FC<{}> = () => {
                     marginBottom: 10,
                 }}
             >
-                <Led ledName="Quarto01" ledApiName="" />
-                <Led ledName="Banheiro" ledApiName="" />
-                <Led ledName="Quarto02" ledApiName="" />
-                <Led ledName="Corredor" ledApiName="" />
-                <Led ledName="Garagem" ledApiName="" />
-                <Led ledName="Externo" ledApiName="" />
+                <Led ledName="LED1" />
+                <Led ledName="LED2" />
+                <Led ledName="LED3" />
+                <Led ledName="LED4" />
+                <Led ledName="LED5" />
+                <Led ledName="LED6" />
             </ScrollView>
         </Screen>
     )
