@@ -21,15 +21,15 @@ export default abstract class Service extends Endpoints {
     }
 
     static async GetWaterBomb() {
-        return await this.Get<any>({
-            url: "/delete_example"
-        })
+        return await fetch(`${ env.BackendUrl() }/led?nome=LED7`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+            .then(async (result) => {
+                const json = await result.json()
+                return json
+            })
     }
 
-    static async SetWaterBomb() {
-        return await this.Post<any>({
-            url: "/delete_example"
-        })
+    static async SetWaterBomb(action: boolean) {
+        return await fetch(`${ env.BackendUrl() }/led?nome=LED7&ligar=${ action }`, { method: "POST", headers: { 'Content-Type': 'application/json' } })
     }
 
     static async GetLed(led: string) {
