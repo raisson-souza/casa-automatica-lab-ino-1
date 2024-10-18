@@ -1,4 +1,4 @@
-import { Button, Text, View, StyleSheet } from "react-native"
+import { Button, Text, View, StyleSheet, ActivityIndicator } from "react-native"
 import React, { useEffect, useState } from "react"
 import Service from "../../services/Service"
 
@@ -37,9 +37,12 @@ export const Led: React.FC<LedProps> = ({ ledName }) => {
         <View style={ styles.container }>
             {
                 loading
-                    ? <Text style={ styles.text }>Carregando informações do ESP 32</Text>
+                    ? <>
+                        <Text style={{ ...styles.text, fontWeight: "bold" }}>Carregando estado do LED { ledName }</Text>
+                        <ActivityIndicator size="large" />
+                    </>
                     : <>
-                        <Text style={ styles.text }>Led { ledName } ({ ledOn ? "LIGADO" : "DESLIGADO" })</Text>
+                        <Text style={ styles.text }>Led { ledName } ({ ledOn ? "ON" : "OFF" })</Text>
                         <Button
                             title={ ledOn ? "Desligar" : "Ligar" }
                             onPress={ () => changeLights() }

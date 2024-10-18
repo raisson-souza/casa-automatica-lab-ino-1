@@ -1,4 +1,4 @@
-import { Button, Text, View } from "react-native"
+import { ActivityIndicator, Button, Text, View } from "react-native"
 import { ComponentType } from "../../types/ComponentTypes"
 import { useEffect, useState } from "react"
 import { useFocusEffect } from "@react-navigation/native"
@@ -38,7 +38,10 @@ export default function WaterBomb({ componentStyle, textStyle }: WaterBombProps)
         <View style={ componentStyle } >
             {
                 loading
-                    ? <Text style={{ ...textStyle, fontWeight: "bold" }}>Carregando estado da Bomba de Agua</Text>
+                    ? <>
+                        <Text style={{ ...textStyle, fontWeight: "bold" }}>Carregando estado da Bomba de Agua</Text>
+                        <ActivityIndicator size="large" />
+                    </>
                     : <>
                         <Text style={{ ...textStyle, fontWeight: "bold" }}>Bomba de água</Text>
                         <Button
