@@ -3,16 +3,17 @@ import React, { useEffect, useState } from "react"
 import Service from "../../services/Service"
 
 type LedProps = {
-    ledName: string
+    ledAPIName: string
+    ledFriendlyName: string
 }
 
-export const Led: React.FC<LedProps> = ({ ledName }) => {
+export const Led: React.FC<LedProps> = ({ ledAPIName, ledFriendlyName }) => {
     const [ ledOn, setLedOn ] = useState<boolean | null>(null)
     const [ loading, setLoading ] = useState<boolean>(true)
 
     useEffect(() => {
         const fetchLights = async () => {
-            await Service.GetLed(ledName)
+            await Service.GetLed(ledAPIName)
                 .then(result => {
                     setLoading(false)
                     setLedOn(result)
@@ -20,14 +21,14 @@ export const Led: React.FC<LedProps> = ({ ledName }) => {
         }
         fetchLights()
 
-        return () => {
-            console.log("saindo")
-            setLoading(true)
-        }
+        // return () => {
+        //     console.log("saindo")
+        //     setLoading(true)
+        // }
     }, [])
 
     const changeLights = async () => {
-        await Service.SetLed(ledName, !ledOn)
+        await Service.SetLed(ledAPIName, !ledOn)
             .then(() => {
                 setLedOn(!ledOn)
             })
@@ -38,11 +39,11 @@ export const Led: React.FC<LedProps> = ({ ledName }) => {
             {
                 loading
                     ? <>
-                        <Text style={{ ...styles.text, fontWeight: "bold" }}>Carregando estado do LED { ledName }</Text>
+                        <Text style={{ ...styles.text, fontWeight: "bold" }}>Carregando estado do LED { ledFriendlyName }</Text>
                         <ActivityIndicator size="large" />
                     </>
                     : <>
-                        <Text style={ styles.text }>Led { ledName } ({ ledOn ? "ON" : "OFF" })</Text>
+                        <Text style={ styles.text }>Led { ledFriendlyName } ({ ledOn ? "ON" : "OFF" })</Text>
                         <Button
                             title={ ledOn ? "Desligar" : "Ligar" }
                             onPress={ () => changeLights() }
@@ -69,5 +70,6 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 20,
         fontWeight: "bold",
+        textAlign: "center",
     }
 })
