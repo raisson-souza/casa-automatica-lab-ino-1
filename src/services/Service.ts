@@ -14,12 +14,6 @@ export default abstract class Service extends Endpoints {
         })
     }
 
-    static async GetPresenceSensor(body: any) {
-        return await this.Get<any>({
-            url: "/put_example",
-        })
-    }
-
     static async GetWaterBomb() {
         return await fetch(`${ env.BackendUrl() }/led?nome=LED7`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
             .then(async (result) => {
