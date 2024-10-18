@@ -3,15 +3,14 @@ import Endpoints from "./base/Endpoints"
 
 export default abstract class Service extends Endpoints {
     static async GetGate() {
-        return await this.Get<any>({
-            url: "/get_example"
-        })
+        return await fetch(`${ env.BackendUrl() }/led?nome=LED8`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+            .then(async (result) => {
+                return await result.json()
+            })
     }
 
-    static async SetGate() {
-        return await this.Post<any>({
-            url: "/get_example"
-        })
+    static async SetGate(action: boolean) {
+        return await fetch(`${ env.BackendUrl() }/led?nome=LED8&ligar=${ action }`, { method: "POST", headers: { 'Content-Type': 'application/json' } })
     }
 
     static async GetWaterBomb() {
