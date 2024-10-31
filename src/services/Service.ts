@@ -2,15 +2,8 @@ import env from "../config/env"
 import Endpoints from "./base/Endpoints"
 
 export default abstract class Service extends Endpoints {
-    static async GetGate() {
-        return await fetch(`${ env.BackendUrl() }/led?nome=LED8`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
-            .then(async (result) => {
-                return await result.json()
-            })
-    }
-
     static async SetGate(action: boolean) {
-        return await fetch(`${ env.BackendUrl() }/led?nome=LED8&ligar=${ action }`, { method: "POST", headers: { 'Content-Type': 'application/json' } })
+        return await fetch(`${ env.BackendUrl() }/portao?acao=${ action ? "abrir" : "fechar" }`, { method: "POST", headers: { 'Content-Type': 'application/json' } })
     }
 
     static async GetWaterBomb() {
