@@ -21,11 +21,14 @@ export const Led: React.FC<LedProps> = ({ ledAPIName, ledFriendlyName }) => {
         }
         fetchLights()
 
-        // return () => {
-        //     console.log("saindo")
-        //     setLoading(true)
-        // }
-    }, [])
+        const interval = setInterval(() => {
+            setLoading(true)
+        }, 5000)
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [loading])
 
     const changeLights = async () => {
         await Service.SetLed(ledAPIName, !ledOn)

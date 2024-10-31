@@ -30,11 +30,11 @@ export const Leds: React.FC<{}> = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        gap: 20,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "center",
-    },
+    // container: {
+    //     flex: 1,
+    //     gap: 20,
+    //     width: "100%",
+    //     alignItems: "center",
+    //     justifyContent: "center",
+    // },
 })
