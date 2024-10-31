@@ -11,7 +11,7 @@ type DrawerNavigationParams = {
   Home: undefined
   Gate: undefined
   Lights: undefined
-  WaterBomb: undefined
+  // WaterBomb: undefined
 }
 
 const Drawer = createDrawerNavigator<DrawerNavigationParams>()
@@ -50,11 +50,11 @@ const App = () => {
           name="Lights"
           component={ Leds }
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Bomba de Água" }}
           name="WaterBomb"
           component={ WaterBombScreen }
-        />
+        /> */}
       </Drawer.Navigator>
     </NavigationContainer>
   )
