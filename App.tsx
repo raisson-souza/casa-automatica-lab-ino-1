@@ -4,6 +4,7 @@ import { Leds } from "./src/screens/Leds"
 import { NavigationContainer } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import GateScreen from "./src/screens/GateScreen"
+import HumidityAndTemperatureScreen from "./src/screens/HumidityAndTemperature"
 import React from "react"
 import WaterBombScreen from "./src/screens/WaterBombScreen"
 
@@ -12,6 +13,7 @@ type DrawerNavigationParams = {
   Gate: undefined
   Lights: undefined
   // WaterBomb: undefined
+  HumidityAndTemperature: undefined
 }
 
 const Drawer = createDrawerNavigator<DrawerNavigationParams>()
@@ -55,6 +57,11 @@ const App = () => {
           name="WaterBomb"
           component={ WaterBombScreen }
         /> */}
+        <Drawer.Screen
+          options={{ ...drawerScreenStyle, title: "DHT" }}
+          name="HumidityAndTemperature"
+          component={ HumidityAndTemperatureScreen }
+        />
       </Drawer.Navigator>
     </NavigationContainer>
   )

@@ -29,4 +29,12 @@ export default abstract class Service extends Endpoints {
     static async SetLed(led: string, action: boolean = true) {
         return await fetch(`${ env.BackendUrl() }/led?nome=${ led }&ligar=${ action }`, { method: "POST", headers: { 'Content-Type': 'application/json' } })
     }
+
+    static async GetDht() {
+        return await fetch(`${ env.BackendUrl() }/dht`, { method: "GET", headers: { 'Content-Type': 'application/json' } })
+            .then(async (result) => {
+                const json = await result.json()
+                return json
+            })
+    }
 }
