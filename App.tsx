@@ -1,18 +1,18 @@
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import { Home } from "./src/screens/Home"
+import { HumidityAndTemperature } from "./src/components/HumidityAndTemperature"
 import { Leds } from "./src/screens/Leds"
 import { NavigationContainer } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
-import GateScreen from "./src/screens/GateScreen"
-import HumidityAndTemperatureScreen from "./src/screens/HumidityAndTemperature"
+import Gate from "./src/components/Gate"
 import React from "react"
-import WaterBombScreen from "./src/screens/WaterBombScreen"
+import WaterBomb from "./src/components/WaterBomb"
 
 type DrawerNavigationParams = {
   Home: undefined
   Gate: undefined
   Lights: undefined
-  // WaterBomb: undefined
+  WaterBomb: undefined
   HumidityAndTemperature: undefined
 }
 
@@ -45,22 +45,22 @@ const App = () => {
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Portão" }}
           name="Gate"
-          component={ GateScreen }
+          component={ Gate }
         />
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "LEDs" }}
           name="Lights"
           component={ Leds }
         />
-        {/* <Drawer.Screen
+        <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Bomba de Água" }}
           name="WaterBomb"
-          component={ WaterBombScreen }
-        /> */}
+          component={ WaterBomb }
+        />
         <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "DHT" }}
           name="HumidityAndTemperature"
-          component={ HumidityAndTemperatureScreen }
+          component={ HumidityAndTemperature }
         />
       </Drawer.Navigator>
     </NavigationContainer>

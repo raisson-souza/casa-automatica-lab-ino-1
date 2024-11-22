@@ -1,3 +1,4 @@
+import { Screen } from "./base/Screen"
 import { Text, View, StyleSheet } from "react-native"
 import React, { useEffect, useState } from "react"
 import Service from "../services/Service"
@@ -26,10 +27,12 @@ export const HumidityAndTemperature: React.FC<HumidityAndTemperatureProps> = ({ 
     }, [])
 
     return (
-        <View style={ styles.container }>
-            <Text style={ styles.text }>TEMPERATURA { dht?.temperature }</Text>
-            <Text style={ styles.text }>UMIDADE { dht?.humidity }</Text>
-        </View>
+        <Screen>
+            <View style={ styles.container }>
+                <Text style={ styles.text }>TEMPERATURA { dht?.temperature }</Text>
+                <Text style={ styles.text }>UMIDADE { dht?.humidity }</Text>
+            </View>
+        </Screen>
     )
 }
 
