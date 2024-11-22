@@ -42,12 +42,10 @@ export default abstract class Endpoints {
             )
                 .then(async (response) => {
                     const json = await response.json()
-                    console.log("RESPONSE GET", response)
                     return new Response<T>({ data: json, status: response.status })
                 })
         }
         catch (ex) {
-            console.log("ERRO GET", ex)
             return new Response<T>({ data: "", status: 500, fetchError: (ex as Error).message })
         }
     }
@@ -71,12 +69,10 @@ export default abstract class Endpoints {
             )
                 .then(async (response) => {
                     const json = await response.json()
-                    console.log("RESPONSE POST", response)
                     return new Response<T>({ data: json, status: response.status })
                 })
         }
         catch (ex) {
-            console.log("ERRO POST", ex)
             return new Response<T>({ data: "", status: 500, fetchError: (ex as Error).message })
         }
     }

@@ -8,7 +8,6 @@ export const Leds: React.FC<{}> = () => {
         const ledsNames = ["LED1", "LED2", "LED3", "LED4", "LED5", "LED6"]
 
         for (const ledName of ledsNames) {
-            console.log("led", ledName)
             await Service.SetLed(ledName, action)
         }
     }
