@@ -1,6 +1,6 @@
 import { Led } from "../components/Led"
 import { Screen } from "../components/base/Screen"
-import { StyleSheet,ScrollView, Text, Pressable } from "react-native"
+import { StyleSheet, ScrollView, Text, Pressable } from "react-native"
 import Service from "../services/Service"
 
 export const Leds: React.FC<{}> = () => {

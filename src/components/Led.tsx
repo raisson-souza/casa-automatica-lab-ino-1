@@ -1,6 +1,6 @@
 import { Button, Text, View, StyleSheet, ActivityIndicator } from "react-native"
 import React, { useEffect, useState } from "react"
-import Service from "../../services/Service"
+import Service from "../services/Service"
 
 type LedProps = {
     ledAPIName: string

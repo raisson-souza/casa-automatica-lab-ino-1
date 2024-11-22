@@ -1,4 +1,4 @@
-import { HumidityAndTemperature } from "../components/HumidityAndTemperature/HumidityAndTemperature"
+import { HumidityAndTemperature } from "../components/HumidityAndTemperature"
 import { Screen } from "../components/base/Screen"
 
 export default function HumidityAndTemperatureScreen({}) {

@@ -1,7 +1,7 @@
-import { ComponentType } from "../../types/ComponentTypes"
+import { ComponentType } from "../types/ComponentTypes"
 import { Pressable, Text, View } from "react-native"
 import { useState } from "react"
-import Service from "../../services/Service"
+import Service from "../services/Service"
 
 type GateProps = {
 } & ComponentType

@@ -1,6 +1,6 @@
 import { Text, View, StyleSheet } from "react-native"
 import React, { useEffect, useState } from "react"
-import Service from "../../services/Service"
+import Service from "../services/Service"
 
 type HumidityAndTemperatureProps = { }
 

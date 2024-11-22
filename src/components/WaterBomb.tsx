@@ -1,8 +1,8 @@
 import { ActivityIndicator, Button, Text, View } from "react-native"
-import { ComponentType } from "../../types/ComponentTypes"
+import { ComponentType } from "../types/ComponentTypes"
 import { useEffect, useState } from "react"
 import { useFocusEffect } from "@react-navigation/native"
-import Service from "../../services/Service"
+import Service from "../services/Service"
 
 type WaterBombProps = {
 } & ComponentType
