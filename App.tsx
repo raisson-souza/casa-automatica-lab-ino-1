@@ -52,16 +52,16 @@ const App = () => {
           name="Lights"
           component={ Leds }
         />
-        <Drawer.Screen
+        {/* <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Bomba de Água" }}
           name="WaterBomb"
           component={ WaterBomb }
-        />
-        <Drawer.Screen
+        /> */}
+        {/* <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "DHT" }}
           name="HumidityAndTemperature"
           component={ HumidityAndTemperature }
-        />
+        /> */}
       </Drawer.Navigator>
     </NavigationContainer>
   )
