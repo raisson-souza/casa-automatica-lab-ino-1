@@ -2,6 +2,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer"
 import { Home } from "./src/screens/Home"
 import { HumidityAndTemperature } from "./src/components/HumidityAndTemperature"
 import { Leds } from "./src/screens/Leds"
+import { LightSensorScreen } from "./src/screens/LightSensor"
 import { NavigationContainer } from "@react-navigation/native"
 import { StatusBar } from "expo-status-bar"
 import Gate from "./src/components/Gate"
@@ -14,6 +15,7 @@ type DrawerNavigationParams = {
   Lights: undefined
   WaterBomb: undefined
   HumidityAndTemperature: undefined
+  LightSensor: undefined
 }
 
 const Drawer = createDrawerNavigator<DrawerNavigationParams>()
@@ -51,6 +53,11 @@ const App = () => {
           options={{ ...drawerScreenStyle, title: "LEDs" }}
           name="Lights"
           component={ Leds }
+        />
+        <Drawer.Screen
+          options={{ ...drawerScreenStyle, title: "Sensor de Luz" }}
+          name="LightSensor"
+          component={ LightSensorScreen }
         />
         {/* <Drawer.Screen
           options={{ ...drawerScreenStyle, title: "Bomba de Água" }}
