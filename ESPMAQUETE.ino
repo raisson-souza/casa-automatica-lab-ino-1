@@ -1,12 +1,12 @@
 #include <WiFi.h>
 #include <WebServer.h>
 #include <ESP32Servo.h>
-#include <DHT.h>
+//#include <DHT.h>
 
-#define DHTPIN 13
-#define DHTTYPE DHT11
+//#define DHTPIN 13
+//#define DHTTYPE DHT11
 
-DHT dht(DHTPIN, DHTTYPE);
+//DHT dht(DHTPIN, DHTTYPE);
 Servo portao;
 
 // Credenciais Wi-Fi
@@ -17,6 +17,8 @@ const char* password = "@MF$4515";
 const int leds[] = { 2, 4, 5, 18, 19, 21 };
 const int totalLeds = sizeof(leds) / sizeof(leds[0]);
 bool ledEstado[] = { false, false, false, false, false, false };
+
+const int buzzer = 22;
 
 // Instância do servidor na porta 80
 WebServer server(80);
@@ -94,10 +96,16 @@ void handlePortao() {
       portao.write(90);
       Serial.println("FOI");
       server.send(200, "text/plain", "Portão aberto\n");
+      digitalWrite(buzzer, HIGH);
+      delay(1000);
+      digitalWrite(buzzer, LOW);
     } else if (acao == "fechar") {
       portao.write(180);
       server.send(200, "text/plain", "Portão fechado\n");
       Serial.println("FOI");
+      digitalWrite(buzzer, HIGH);
+      delay(1000);
+      digitalWrite(buzzer, LOW);
     } else {
       server.send(400, "text/plain", "Ação inválida\n");
       Serial.println("TA DANDO MERDA");
@@ -108,30 +116,31 @@ void handlePortao() {
   }
 }
 
-void handleDHT() {
+//void handleDHT() {
 
-  float temperatura = dht.readTemperature();
-  float umidade = dht.readHumidity();
-  Serial.println(temperatura);
-  Serial.println(umidade);
+  //float temperatura = dht.readTemperature();
+  //float umidade = dht.readHumidity();
+  //Serial.println(temperatura);
+  //Serial.println(umidade);
 
-  if (isnan(temperatura) || isnan(umidade)) {
-    server.send(500, "text/plain", "Erro ao ler o sensor DHT11\n");
-    return;
-  }
+  //if (isnan(temperatura) || isnan(umidade)) {
+    //server.send(500, "text/plain", "Erro ao ler o sensor DHT11\n");
+    //return;
+  //}
 
   // Formatação dos valores como um array de strings
-  String resposta = "[" + String(temperatura) + ", " + String(umidade) + "]";
-  server.send(200, "text/plain", resposta);
-}
+  //String resposta = "[" + String(temperatura) + ", " + String(umidade) + "]";
+  //server.send(200, "text/plain", resposta);
+//}
 
 void setup() {
   Serial.begin(115200);
 
   portao.attach(23);
 
-  dht.begin();
+  //dht.begin();
 
+  pinMode(buzzer, OUTPUT);
   // Configura os pinos dos LEDs como saídas e inicia com todos desligados
   for (int i = 0; i < totalLeds; i++) {
     pinMode(leds[i], OUTPUT);
@@ -147,7 +156,7 @@ void setup() {
 
   server.on("/portao", HTTP_POST, handlePortao);
 
-  server.on("/dht", HTTP_GET, handleDHT);
+  //server.on("/dht", HTTP_GET, handleDHT);
 
   // Inicia o servidor
   server.begin();
