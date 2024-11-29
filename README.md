@@ -1,24 +1,32 @@
-# Em Busca da Casa Automatica
+# Casa Automatizada
 
-> Projeto  para controlar casa automatizada na cadeira de Laboratório de Inovação 1 do curso de Sistemas de Informação da AMF.
+> Projeto  para controlar uma casa automatizada na cadeira de Laboratório de Inovação 1 do curso de Sistemas de Informação da Antonio Meneghetti Faculdade (AMF).
 
-## Sobre o projeto
+## Sobre o Projeto
 
-* Projeto desenvolvido em React Native com EXPO para a criação de um aplicativo controlador.
-* Para criação das automações, foi utilizado ESP32.
+* Projeto desenvolvido em React Native na linguagem Typescript com a plataforma Expo para a criação de um aplicativo controlador.
+* Para criação das automações, foi utilizado um ESP32.
 
-## Automações
+## Funcionalidades
 
-1. O presente projeto consta com LED em todos os comodos da casa;
-2. Portão da garagem automatico;
-3. Piscina abastecida com bomba d' água.
+1. Iluminação dos cômodos da casa com LEDs;
+2. Portão da garagem automatizado com servo;
+3. Piscina abastecida com bomba d' água;
+4. Controle secundário de iluminação da casa através do sensor de luz do celular.
 
 ## Contribuintes
 
+### Desenvolvimento backend no ESP32
 - Fernando Dreyer;
-- Hirruá Silva;
+
+### Montagem e manutenção de hardware
 - Julian Mayolo;
-- Raisson Silveira;
+
+### Desenvolvimento mobile
+- Raisson Souza;
+
+### Demais contribuintes
+- Hirruá Silva;
 - Thales Martins;
 - Vinicios Dotto;
 - Vitor Serra.
