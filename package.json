@@ -1,12 +1,10 @@
 {
-  "name": "project_template_mobile",
+  "name": "casa_automatica_lab_ino",
   "version": "1.0.0",
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo start --android",
-    "ios": "expo start --ios",
-    "web": "expo start --web"
+    "android": "expo start --android"
   },
   "dependencies": {
     "@react-navigation/drawer": "^6.7.2",
